@@ -63,4 +63,6 @@ target/
 # Intellij projects
 .idea/
 
+# VSCode projects
+.vscode/
 
