@@ -1,8 +1,4 @@
-
-# coding: utf-8
-
-# In[1]:
-
+import numpy as np
 
 # Taken from trcsourcestep/trcdata.py
 # Reads data from trc file into dict
@@ -92,20 +88,14 @@ class TRCData(dict):
                             raise IOError('File format invalid: data frame %d does not match the data format' % len_section)
 
 
-# In[2]:
-
-
 trcdata = TRCData()
-trcdata.load("/home/dev/Documents/mapCloud/Static_H23s1.trc")
-
-
-# In[3]:
+# pretty self explanatory, this is hard coded rn
+trcdata.load("Static_H23s1.trc")
 
 
 # Taken from trcframeselectorstep/step.py/execute(self)
 # returns landmark positions at specified frame
-import numpy as np
-
+# currently hard coded
 frame = 3
 
 landmarksNames = trcdata['Labels']
@@ -134,7 +124,6 @@ DEFAULT_MODEL_LANDMARKS = (
     'tibiafibula-MM-r', 'tibiafibula-LM-r',
     )
 print(DEFAULT_MODEL_LANDMARKS)
-# In[4]:
 
 
 # Taken from FieldworkLowerLimb2SideGenerationStep/step.py
@@ -161,11 +150,12 @@ config['knee_dof'] = 'False'
 config['marker_radius'] = '5.0'
 config['skin_pad'] = '5.0'
 config['landmarks'] = {}
-config['data_dir'] = '/home/dev/Documents/mapCloud/gitplugins/fieldworklowerlimb2sidegenerationstep/'
+config['data_dir'] = 'workflow_plugins/fieldworklowerlimb2sidegenerationstep/'
 for l in DEFAULT_MODEL_LANDMARKS:
             config['landmarks'][l] = ''
 
 # Boilerplate code to match the required landmarks in config with the correct imported landmarks
+# will need to get the user to input this one eventually
 config['landmarks']['pelvis-LASIS'] = 'LASI'
 config['landmarks']['pelvis-RASIS'] = 'RASI'
 config['landmarks']['pelvis-Sacral'] = 'Sacral'
@@ -179,7 +169,7 @@ config['landmarks']['tibiafibula-MM-r'] = 'RTB4'
 config['landmarks']['tibiafibula-LM-r'] = 'RTB2'
 
 # An EDITED version of llstep
-import llstep
+import llstep_jason as llstep
 
 data = llstep.LLStepData(config)
 
@@ -219,3 +209,4 @@ Inputs
     gias-lowerlimb : gias2.musculoskeletal.bonemodel.LowerLimbAtlas instance
         The lowerlimb model used in the customisation
 '''
+
